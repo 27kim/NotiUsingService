@@ -42,12 +42,12 @@ public class NotificationService extends Service {
     }
 
     public static void stop(Context context) {
-        Intent starter = new Intent(context, NotificationService.class);
+        Intent stopper = new Intent(context, NotificationService.class);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            context.stopService(starter);
+            context.stopService(stopper);
         }else{
-            context.stopService(starter);
+            context.stopService(stopper);
 
         }
     }
@@ -121,7 +121,11 @@ public class NotificationService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        thread.interrupt();
+        try{
+            thread.interrupt();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -135,5 +139,9 @@ public class NotificationService extends Service {
     public void onRebind(Intent intent) {
         Log.v(TAG, "in onRebind");
         super.onRebind(intent);
+    }
+
+    public void stopAlarm() {
+
     }
 }

@@ -19,11 +19,16 @@ import androidx.work.WorkManager;
 import com.d27.adjoe.NotiWorkManager;
 import com.d27.adjoe.R;
 import com.d27.adjoe.service.NotificationService;
+import com.d27.adjoe.service.SingleNotificationService;
 import com.d27.adjoe.util.AlarmUtils;
 
 import java.util.concurrent.TimeUnit;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
+
+/**
+ * can't use both WorkManager and JobSchedulergxl n,c v/
+ * */
 
 public class NotiFragment extends Fragment {
 
@@ -34,6 +39,12 @@ public class NotiFragment extends Fragment {
     Button mButton3;
     Button mButton4;
     Button mButton5;
+
+    Button mButton1_2;
+    Button mButton2_2;
+    Button mButton3_2;
+    Button mButton4_2;
+    Button mButton5_2;
     public NotiFragment() {
         // Required empty public constructor
     }
@@ -60,6 +71,11 @@ public class NotiFragment extends Fragment {
         mButton3 = view.findViewById(R.id.btn3);
         mButton4 = view.findViewById(R.id.btn4);
         mButton5 = view.findViewById(R.id.btn5);
+        mButton1_2 = view.findViewById(R.id.btn1_2);
+        mButton2_2 = view.findViewById(R.id.btn2_2);
+        mButton3_2 = view.findViewById(R.id.btn3_2);
+        mButton4_2 = view.findViewById(R.id.btn4_2);
+        mButton5_2 = view.findViewById(R.id.btn5_2);
 
         mButton1.setText("using AlarmManager");
         mButton1.setOnClickListener(new View.OnClickListener() {
@@ -68,31 +84,43 @@ public class NotiFragment extends Fragment {
                 new AlarmUtils().getInstance().startFiveSecondAlarm(getContext());
             }
         });
+        mButton1_2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new AlarmUtils().getInstance().stopAlarm();
+            }
+        });
+
         mButton2.setText("using WorkManager - 15minutes min interval");
         mButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Constraints constraints = new Constraints.Builder()
-                        .setRequiresCharging(true)
-                        .build();
                 //minimum allowed value 15 minutes
                 PeriodicWorkRequest.Builder builder = new PeriodicWorkRequest
                         .Builder(NotiWorkManager.class, 15, TimeUnit.SECONDS)
-                        .setConstraints(constraints)
                         .addTag(getString(R.string.WORKMANAGER_TAG))
                         ;
                 PeriodicWorkRequest workRequest = builder.build();
                 WorkManager.getInstance().enqueue(workRequest);
             }
         });
+        mButton2_2.setText("cancel WorkManager");
+        mButton2_2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                WorkManager.getInstance().cancelAllWorkByTag(getString(R.string.WORKMANAGER_TAG));
+            }
+        });
         mButton3.setText("using job scheduler");
         mButton3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d(TAG, "using job scheduler");
                 JobScheduler jobScheduler = (JobScheduler) getContext().getSystemService(Context.JOB_SCHEDULER_SERVICE);
                 jobScheduler.schedule(new JobInfo
-                        .Builder(0XC1, new ComponentName(getContext(), NotificationService.class))
-                        .setMinimumLatency(15 * 60 * 1000)
+                        .Builder(0XC1, new ComponentName(getContext(), SingleNotificationService.class))
+                        .setPeriodic(TimeUnit.MINUTES.toMillis(15))
                         .build());
             }
         });
@@ -103,12 +131,25 @@ public class NotiFragment extends Fragment {
                 NotificationService.start(getContext());
             }
         });
-        mButton5.setText("NotificationService.stop");
-        mButton5.setOnClickListener(new View.OnClickListener() {
+        mButton4_2.setText("NotificationService.stop");
+        mButton4_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 NotificationService.stop(getContext());
-
+            }
+        });
+        mButton5.setText("SingleNotificationService.start");
+        mButton5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SingleNotificationService.start(getContext());
+            }
+        });
+        mButton5_2.setText("NotificationService.stop");
+        mButton5_2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SingleNotificationService.stop(getContext());
             }
         });
         return view;
