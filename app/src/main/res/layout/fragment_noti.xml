@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <LinearLayout
@@ -12,18 +13,25 @@
 
         <Button
             android:id="@+id/btn1"
-                        android:layout_width="0dp"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="btn1" />
+            tools:text="btn1" />
+
         <Button
             android:id="@+id/btn1_2"
-                        android:layout_width="0dp"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="btn1" />
+            tools:text="btn1" />
 
     </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="work manger and job scheduler needs \nat least 15 minutes interval" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,16 +40,17 @@
 
         <Button
             android:id="@+id/btn2"
-                        android:layout_width="0dp"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="btn2" />
+            tools:text="btn2" />
+
         <Button
             android:id="@+id/btn2_2"
-                        android:layout_width="0dp"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="btn2" />
+            tools:text="btn2" />
 
     </LinearLayout>
 
@@ -52,16 +61,17 @@
 
         <Button
             android:id="@+id/btn3"
-                        android:layout_width="0dp"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="btn3" />
+            tools:text="btn3" />
+
         <Button
             android:id="@+id/btn3_2"
-                        android:layout_width="0dp"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="btn3" />
+            tools:text="btn3" />
 
     </LinearLayout>
 
@@ -73,15 +83,16 @@
         <Button
             android:id="@+id/btn4"
             android:layout_width="0dp"
+            android:layout_height="60dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="btn4" />
+            tools:text="btn4" />
+
         <Button
             android:id="@+id/btn4_2"
             android:layout_width="0dp"
+            android:layout_height="60dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="btn4" />
+            tools:text="btn4" />
 
     </LinearLayout>
 
@@ -92,16 +103,17 @@
 
         <Button
             android:id="@+id/btn5"
-                        android:layout_width="0dp"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="btn5" />
+            tools:text="btn5" />
+
         <Button
             android:id="@+id/btn5_2"
-                        android:layout_width="0dp"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="btn5" />
+            tools:text="btn5" />
 
     </LinearLayout>
 

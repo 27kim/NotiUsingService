@@ -17,12 +17,12 @@ import androidx.core.app.NotificationCompat;
 import com.d27.adjoe.MainActivity;
 import com.d27.adjoe.R;
 
+import static com.d27.adjoe.App.TAG;
 import static com.d27.adjoe.App.CHANNEL_ID;
+import static com.d27.adjoe.App.getTimestamp;
 
 public class NotificationService extends Service {
-    public static final String TAG = NotificationService.class.getSimpleName();
     private Chronometer mChronometer;
-    NotificationManager notificationManager;
     PendingIntent pendingIntent;
     Intent notificationIntent;
     Thread thread;
@@ -38,17 +38,6 @@ public class NotificationService extends Service {
             context.startForegroundService(starter);
         }else{
             context.startService(starter);
-        }
-    }
-
-    public static void stop(Context context) {
-        Intent stopper = new Intent(context, NotificationService.class);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            context.stopService(stopper);
-        }else{
-            context.stopService(stopper);
-
         }
     }
 
@@ -108,16 +97,6 @@ public class NotificationService extends Service {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
-    public String getTimestamp() {
-        long elapsedMillis = SystemClock.elapsedRealtime()
-                - mChronometer.getBase();
-        int hours = (int) (elapsedMillis / 3600000);
-        int minutes = (int) (elapsedMillis - hours * 3600000) / 60000;
-        int seconds = (int) (elapsedMillis - hours * 3600000 - minutes * 60000) / 1000;
-        int millis = (int) (elapsedMillis - hours * 3600000 - minutes * 60000 - seconds * 1000);
-        return hours + ":" + minutes + ":" + seconds + ":" + millis;
-    }
-
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -140,8 +119,14 @@ public class NotificationService extends Service {
         Log.v(TAG, "in onRebind");
         super.onRebind(intent);
     }
+    public static void stop(Context context) {
+        Intent stopper = new Intent(context, NotificationService.class);
 
-    public void stopAlarm() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            context.stopService(stopper);
+        }else{
+            context.stopService(stopper);
 
+        }
     }
 }

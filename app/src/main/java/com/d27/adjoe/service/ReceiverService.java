@@ -10,8 +10,9 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import static com.d27.adjoe.App.TAG;
+
 public class ReceiverService extends Service {
-    public static final String TAG = ReceiverService.class.getSimpleName();
     private BroadcastReceiver receiver;
     private static final String ACTION = "android.intent.action.USER_PRESENT";
 

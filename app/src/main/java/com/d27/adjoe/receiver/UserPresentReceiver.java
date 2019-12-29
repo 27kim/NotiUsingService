@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-import com.d27.adjoe.service.NotificationService;
 import com.d27.adjoe.service.ReceiverService;
 
 public class UserPresentReceiver extends BroadcastReceiver {
@@ -16,9 +15,10 @@ public class UserPresentReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        if(Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction())){
-            Log.d(USER_PRESENT_RECEIVER, ".. ACTION_BOOT_COMPLETED 0000");
-            startServiceByAlarm(context);
+        if(Intent.ACTION_USER_PRESENT.equals(intent.getAction())){
+            Log.d(USER_PRESENT_RECEIVER, "onReceive ACTION_USER_PRESENT");
+//            startServiceByAlarm(context);
+//            NotificationService.start(context);
         }
     }
 

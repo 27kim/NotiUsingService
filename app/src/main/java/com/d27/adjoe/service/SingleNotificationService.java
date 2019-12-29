@@ -18,6 +18,7 @@ import androidx.core.app.NotificationCompat;
 import com.d27.adjoe.App;
 import com.d27.adjoe.MainActivity;
 import com.d27.adjoe.R;
+import static com.d27.adjoe.App.TAG;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -40,7 +41,6 @@ public class SingleNotificationService extends Service {
         }
     }
 
-    public static final String TAG = SingleNotificationService.class.getSimpleName();
     PendingIntent pendingIntent;
     Intent notificationIntent;
     static final int FOREGROUND_SERVICE_ID = 0xB1;
@@ -90,7 +90,6 @@ public class SingleNotificationService extends Service {
 
     public static void stop(Context context) {
         Intent stopper = new Intent(context, SingleNotificationService.class);
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             context.stopService(stopper);
         } else {
