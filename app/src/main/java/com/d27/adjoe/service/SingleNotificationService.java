@@ -24,6 +24,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import static com.d27.adjoe.App.CHANNEL_ID;
 
+/**
+ * service to create notification
+ * */
+
 public class SingleNotificationService extends Service {
 
     public static final int NOTIFICATION_ID = 0xAA;
@@ -57,7 +61,6 @@ public class SingleNotificationService extends Service {
         notificationIntent = new Intent(this, MainActivity.class);
 
         pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
-        //
         startForeground(FOREGROUND_SERVICE_ID, getNotification());
     }
 

@@ -19,6 +19,10 @@ import static com.d27.adjoe.App.TAG;
 import static com.d27.adjoe.App.CHANNEL_ID;
 import static com.d27.adjoe.App.getTimestamp;
 
+/**
+ * dummy service to crate notification for foreground service
+ * to register broadcast receiver for ACTION_USER_PRESENT
+ * */
 public class DummyService extends Service {
 
 

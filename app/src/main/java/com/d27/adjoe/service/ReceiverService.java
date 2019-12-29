@@ -12,6 +12,10 @@ import androidx.annotation.Nullable;
 
 import static com.d27.adjoe.App.TAG;
 
+/**
+ * service to register receiver for USER_PRESENT
+ * */
+
 public class ReceiverService extends Service {
     private BroadcastReceiver receiver;
     private static final String ACTION = "android.intent.action.USER_PRESENT";

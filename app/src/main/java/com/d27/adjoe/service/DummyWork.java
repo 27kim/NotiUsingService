@@ -13,6 +13,10 @@ import com.d27.adjoe.receiver.UserPresentReceiver;
 
 import static com.d27.adjoe.App.TAG;
 
+/**
+ * worker class to register broadcast receiver for ACTION_USER_PRESENT
+ * */
+
 public class DummyWork extends Worker {
 
     public DummyWork(@NonNull Context context, @NonNull WorkerParameters workerParams) {

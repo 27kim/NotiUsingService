@@ -21,6 +21,10 @@ import static com.d27.adjoe.App.TAG;
 import static com.d27.adjoe.App.CHANNEL_ID;
 import static com.d27.adjoe.App.getTimestamp;
 
+/**
+ * service to create periodic notification for 5 seconds
+ * */
+
 public class NotificationService extends Service {
     private Chronometer mChronometer;
     PendingIntent pendingIntent;
