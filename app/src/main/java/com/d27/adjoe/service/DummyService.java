@@ -52,8 +52,8 @@ public class DummyService extends Service {
     private Notification getNotification() {
         Log.i(TAG, "DummyService time stamp : " + getTimestamp());
         return new NotificationCompat.Builder(this, CHANNEL_ID)
-                .setContentTitle("Adjoe is running")
-                .setContentText("running now")
+                .setContentTitle("Adjoe")
+                .setContentText("Service is running")
                 .setSmallIcon(R.drawable.ic_launcher_background)
                 .setContentIntent(pendingIntent)
                 .build();

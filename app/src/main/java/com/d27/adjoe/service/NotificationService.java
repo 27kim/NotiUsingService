@@ -86,7 +86,6 @@ public class NotificationService extends Service {
 
         thread.start();
 
-
         return START_NOT_STICKY;
 
     }

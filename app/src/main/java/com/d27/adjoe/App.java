@@ -7,10 +7,10 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
 import android.os.SystemClock;
+import android.util.Log;
 import android.widget.Chronometer;
 
 import com.d27.adjoe.receiver.UserPresentReceiver;
-import com.d27.adjoe.service.DummyService;
 
 public class App extends Application {
 
@@ -28,10 +28,9 @@ public class App extends Application {
         mChronometer.start();
         createNotificationChannel();
         getTimestamp();
-
-        receiver = new UserPresentReceiver();
-        intentFilter = new IntentFilter();
-        intentFilter.addAction(Intent.ACTION_USER_PRESENT);
+//        receiver = new UserPresentReceiver();
+//        intentFilter = new IntentFilter();
+//        intentFilter.addAction(Intent.ACTION_USER_PRESENT);
 //        registerReceiver(receiver, intentFilter);
     }
 

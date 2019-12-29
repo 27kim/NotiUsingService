@@ -10,58 +10,44 @@ import android.content.IntentFilter;
 import android.os.Build;
 import android.util.Log;
 
+import androidx.work.OneTimeWorkRequest;
+import androidx.work.WorkManager;
+
 import com.d27.adjoe.service.DummyService;
+import com.d27.adjoe.service.DummyWork;
 import com.d27.adjoe.service.NotificationService;
 import com.d27.adjoe.service.ReceiverService;
 
-public class BootCompleteReceiver extends BroadcastReceiver {
+import static com.d27.adjoe.App.TAG;
 
-    public static final String USER_PRESENT_RECEIVER = BootCompleteReceiver.class.getSimpleName();
+public class BootCompleteReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Log.d(USER_PRESENT_RECEIVER, ".. ACTION_BOOT_COMPLETED 0000");
-        Log.d(USER_PRESENT_RECEIVER, ".. BootCompleteReceiver - onReceive");
-        Intent intent1 = new Intent();
-        ComponentName componentName = new ComponentName(context, DummyService.class);
-        intent1.setComponent(componentName);
-        if (Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction())) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                context.startForegroundService(intent1);
-            } else {
-                context.startService(intent1);
-            }
+        Log.d(TAG, "BootCompleteReceiver - ACTION_BOOT_COMPLETED");
 
+        /**
+         * using dummy service to register
+         * broadcast receiver for ACTION_USER_PRESENT
+         * */
+//        Intent dummyServiceIntent = new Intent();
+//        ComponentName componentName = new ComponentName(context, DummyService.class);
+//        dummyServiceIntent.setComponent(componentName);
+//        if (Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction())) {D
 //            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//                context.startForegroundService(intent1);
-//            }else{
-//                context.startService(intent1);
+//                context.startForegroundService(dummyServiceIntent);
+//            } else {
+//                context.startService(dummyServiceIntent);
 //            }
+//        }
 
-//            Log.d(USER_PRESENT_RECEIVER, ".. ACTION_BOOT_COMPLETED 0000");
-//            UserPresentReceiver receiver = new UserPresentReceiver();
-//            IntentFilter intentFilter = new IntentFilter();
-//            intentFilter.addAction(Intent.ACTION_USER_PRESENT);
-//            context.registerReceiver(receiver, intentFilter);
-        }
-    }
-
-    private void startServiceByAlarm(Context context) {
-        // Get alarm manager.
-        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-
-        // Create intent to invoke the background service.
-        Intent intent = new Intent(context, ReceiverService.class);
-        PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        long startTime = System.currentTimeMillis();
-        long intervalTime = 60 * 1000;
-
-        String message = "Start service use repeat alarm. ";
-
-        Log.d(USER_PRESENT_RECEIVER, message);
-
-        // Create repeat alarm.
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, startTime, intervalTime, pendingIntent);
+        /**
+         * using WorkManager to register
+         * broadcast receiver for ACTION_USER_PRESENT
+         * */
+        OneTimeWorkRequest compressionWork =
+                new OneTimeWorkRequest.Builder(DummyWork.class)
+                        .build();
+        WorkManager.getInstance().enqueue(compressionWork);
     }
 }
