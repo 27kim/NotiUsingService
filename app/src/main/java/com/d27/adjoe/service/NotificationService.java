@@ -1,7 +1,6 @@
 package com.d27.adjoe.service;
 
 import android.app.Notification;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
@@ -14,7 +13,7 @@ import android.widget.Chronometer;
 
 import androidx.core.app.NotificationCompat;
 
-import com.d27.adjoe.MainActivity;
+import com.d27.adjoe.activity.MainActivity;
 import com.d27.adjoe.R;
 
 import static com.d27.adjoe.App.TAG;
@@ -22,7 +21,7 @@ import static com.d27.adjoe.App.CHANNEL_ID;
 import static com.d27.adjoe.App.getTimestamp;
 
 /**
- * service to create periodic notification for 5 seconds
+ * service to create periodic notification every 5 seconds
  * */
 
 public class NotificationService extends Service {

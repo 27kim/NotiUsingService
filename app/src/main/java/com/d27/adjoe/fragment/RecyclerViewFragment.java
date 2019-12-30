@@ -14,10 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
-import com.d27.adjoe.AlbumsData;
+import com.d27.adjoe.model.AlbumsData;
 import com.d27.adjoe.R;
-import com.d27.adjoe.RecyclerViewAdapter;
-import com.d27.adjoe.RequestHttpUrlConnection;
+import com.d27.adjoe.util.RequestHttpUrlConnection;
 import com.google.gson.Gson;
 
 import java.io.IOException;

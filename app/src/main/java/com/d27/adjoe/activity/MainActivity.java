@@ -1,27 +1,13 @@
-package com.d27.adjoe;
+package com.d27.adjoe.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
-import com.d27.adjoe.receiver.UserPresentReceiver;
+import com.d27.adjoe.fragment.PageAdapter;
+import com.d27.adjoe.R;
 import com.google.android.material.tabs.TabLayout;
-import com.google.gson.Gson;
-
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private ViewPager mViewPager;
@@ -34,8 +20,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mTabLayout = (TabLayout) findViewById(R.id.layout_tab);
-        mTabLayout.addTab(mTabLayout.newTab().setText("RecyclerView"));
         mTabLayout.addTab(mTabLayout.newTab().setText("Notification"));
+        mTabLayout.addTab(mTabLayout.newTab().setText("RecyclerView"));
 
         mViewPager = (ViewPager) findViewById(R.id.pager_content);
         mPageAdapter = new PageAdapter(

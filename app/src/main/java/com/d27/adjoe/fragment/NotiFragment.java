@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkManager;
 
-import com.d27.adjoe.NotiWorkManager;
+import com.d27.adjoe.util.NotiWorkManager;
 import com.d27.adjoe.R;
 import com.d27.adjoe.service.NotificationService;
 import com.d27.adjoe.service.SingleNotificationService;

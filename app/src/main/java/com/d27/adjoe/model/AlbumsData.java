@@ -1,4 +1,4 @@
-package com.d27.adjoe;
+package com.d27.adjoe.model;
 
 public class AlbumsData {
     public String userId;

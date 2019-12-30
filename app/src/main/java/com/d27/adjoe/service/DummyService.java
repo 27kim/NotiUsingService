@@ -11,13 +11,12 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
-import com.d27.adjoe.MainActivity;
+import com.d27.adjoe.activity.MainActivity;
 import com.d27.adjoe.R;
 import com.d27.adjoe.receiver.UserPresentReceiver;
 
 import static com.d27.adjoe.App.TAG;
 import static com.d27.adjoe.App.CHANNEL_ID;
-import static com.d27.adjoe.App.getTimestamp;
 
 /**
  * dummy service to crate notification for foreground service
@@ -26,6 +25,7 @@ import static com.d27.adjoe.App.getTimestamp;
 public class DummyService extends Service {
 
 
+    public static final int DUMMY_SERVICE_ID = 220;
     PendingIntent pendingIntent;
     Intent notificationIntent;
 
@@ -38,14 +38,14 @@ public class DummyService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.d(TAG, "DummyService time stamp : " + getTimestamp());
+        Log.d(TAG, "registerReceiver from DummyService");
 
         notificationIntent = new Intent(this, MainActivity.class);
 
         pendingIntent = PendingIntent.getActivity(this,
                 0, notificationIntent, 0);
 
-        startForeground(220, getNotification());
+        startForeground(DUMMY_SERVICE_ID, getNotification());
 
         UserPresentReceiver receiver = new UserPresentReceiver();
         IntentFilter intentFilter = new IntentFilter();
@@ -54,10 +54,9 @@ public class DummyService extends Service {
     }
 
     private Notification getNotification() {
-        Log.i(TAG, "DummyService time stamp : " + getTimestamp());
         return new NotificationCompat.Builder(this, CHANNEL_ID)
-                .setContentTitle("Adjoe")
-                .setContentText("Service is running")
+                .setContentTitle(getBaseContext().getString(R.string.adjoe))
+                .setContentText(getBaseContext().getString(R.string.noti_context))
                 .setSmallIcon(R.drawable.ic_launcher_background)
                 .setContentIntent(pendingIntent)
                 .build();

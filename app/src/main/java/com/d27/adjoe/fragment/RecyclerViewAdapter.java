@@ -1,4 +1,4 @@
-package com.d27.adjoe;
+package com.d27.adjoe.fragment;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,7 +9,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import com.d27.adjoe.R;
+import com.d27.adjoe.model.AlbumsData;
+
 import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.RecyclerViewHolder> {
